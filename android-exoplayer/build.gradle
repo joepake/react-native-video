@@ -4,6 +4,8 @@ def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
+def ANDROIDX_VERSION = safeExtGet('androidxVersion', "1.0.0")
+
 android {
     compileSdkVersion safeExtGet('compileSdkVersion', 27)
     buildToolsVersion safeExtGet('buildToolsVersion', '27.0.3')
@@ -21,16 +23,18 @@ android {
     }
 }
 
+
+
 dependencies {
     compileOnly "com.facebook.react:react-native:${safeExtGet('reactNativeVersion', '+')}"
-    implementation('com.google.android.exoplayer:exoplayer:2.9.3') {
+    implementation('com.google.android.exoplayer:exoplayer:2.9.5') {
         exclude group: 'com.android.support'
     }
 
     // All support libs must use the same version
-    implementation "com.android.support:support-annotations:${safeExtGet('supportLibVersion', '+')}"
-    implementation "com.android.support:support-compat:${safeExtGet('supportLibVersion', '+')}"
-    implementation "com.android.support:support-media-compat:${safeExtGet('supportLibVersion', '+')}"
+    implementation "androidx.annotation:annotation:$ANDROIDX_VERSION"
+    implementation "androidx.core:core:$ANDROIDX_VERSION"
+    implementation "androidx.media:media:$ANDROIDX_VERSION"
 
     implementation('com.google.android.exoplayer:extension-okhttp:2.9.3') {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
