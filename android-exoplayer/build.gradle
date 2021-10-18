@@ -28,7 +28,16 @@ android {
 
 dependencies {
     implementation "com.facebook.react:react-native:${safeExtGet('reactNativeVersion', '+')}"
-    implementation('com.google.android.exoplayer:exoplayer:2.15.1') {
+
+    implementation('com.google.android.exoplayer:exoplayer-core:2.15.1') {
+        exclude group: 'com.android.support'
+    }
+    
+    implementation('com.google.android.exoplayer:exoplayer-dash:2.15.1') {
+        exclude group: 'com.android.support'
+    }
+    
+    implementation('com.google.android.exoplayer:exoplayer-ui:2.15.1') {
         exclude group: 'com.android.support'
     }
 
